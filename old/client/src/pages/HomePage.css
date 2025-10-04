@@ -1,0 +1,358 @@
+.homepage {
+  min-height: calc(100vh - 80px); /* Account for navbar height */
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #2d1b69 100%);
+  color: #e0e0e0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 4rem;
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, #64ffda, #4fd3b8, #3fb8af);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: #b0b0b0;
+}
+
+.cta-button {
+  display: inline-block;
+  background: linear-gradient(45deg, #64ffda, #4fd3b8);
+  color: #0f0f23;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(100, 255, 218, 0.4);
+}
+
+.hero-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.planet-animation {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.star {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, #ffeb3b, #ff9800);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 50px rgba(255, 235, 59, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.planet {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(45deg, #2196f3, #03a9f4);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  animation: orbit 4s linear infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(120px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(120px) rotate(-360deg);
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.how-it-works {
+  padding: 6rem 0;
+  background: #282828;
+}
+
+.how-it-works h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #64ffda;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+.step {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+  border-color: rgba(100, 255, 218, 0.4);
+}
+
+.step-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.step h3 {
+  color: #64ffda;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.science-section {
+  padding: 6rem 0;
+}
+
+.science-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #64ffda;
+}
+
+.science-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.science-text p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.learn-more-btn {
+  display: inline-block;
+  color: #64ffda;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border: 2px solid #64ffda;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.learn-more-btn:hover {
+  background: #64ffda;
+  color: #0f0f23;
+}
+
+.transit-demo {
+  text-align: center;
+}
+
+.transit-animation {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 2rem;
+}
+
+.star-large {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #ffeb3b, #ff9800);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 30px rgba(255, 235, 59, 0.5);
+}
+
+.planet-transit {
+  width: 20px;
+  height: 20px;
+  background: #2196f3;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  animation: transit 3s ease-in-out infinite;
+}
+
+@keyframes transit {
+  0% {
+    left: -20px;
+  }
+  50% {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  100% {
+    left: 220px;
+  }
+}
+
+.light-curve {
+  margin-top: 1rem;
+}
+
+.light-curve p {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #b0b0b0;
+}
+
+.stats-section {
+  padding: 4rem 0;
+  background: rgba(100, 255, 218, 0.05);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+
+.stat h3 {
+  font-size: 2.5rem;
+  color: #64ffda;
+  margin-bottom: 0.5rem;
+}
+
+.stat p {
+  color: #b0b0b0;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .science-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Footer */
+.home-footer {
+  margin-top: auto;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(100, 255, 218, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.home-footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.home-footer .footer-content {
+  text-align: center;
+  color: #888;
+}
+
+.home-footer .footer-content p {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #64ffda;
+}
+
+.footer-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+}
+
+.footer-stats span:not(:nth-child(even)) {
+  color: #b0b0b0;
+}
+
+.footer-stats span:nth-child(even) {
+  color: #64ffda;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .footer-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-stats span:nth-child(even) {
+    display: none;
+  }
+}
