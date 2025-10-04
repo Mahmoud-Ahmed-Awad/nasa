@@ -7,22 +7,22 @@ const Team = () => {
 
   const teamMembers = [
     {
-      name: "Yousif Ayman",
+      name: "Youssef Ayman",
       role: "Team Leader",
       bio: "Yousif Ayman is a Full Stack Developer with a passion for building scalable and efficient systems. He is responsible for the leading the team and the overall project.",
-      image: "/assets/team/yousif-ayman.jpg",
+      image: "/assets/team/youssef-ayman.jpg",
     },
     {
       name: "Mahmoud Ahmed",
       role: "Backend Developer",
       bio: "Mahmoud Ahmed is a Full Stack Developer with a passion for building scalable and efficient systems. He is responsible for the backend of the application.",
-      image: "/assets/team/mahmoud.jpg",
+      image: "/assets/team/mahmoud-ahmed.jpg",
     },
     {
-      name: "Ahmed Saeed",
+      name: "Mohamed Saeed",
       role: "Researcher",
-      bio: "Ahmed Saeed is a Researcher with a passion for building scalable and efficient systems. He is responsible for the research of the application.",
-      image: "/assets/team/ahmed-saeed.jpg",
+      bio: "Mohamed Saeed is a Researcher with a passion for building scalable and efficient systems. He is responsible for the research of the application.",
+      image: "/assets/team/mohamed-saeed.jpg",
     },
     {
       name: "Malak Nour",
@@ -77,8 +77,18 @@ const Team = () => {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <svg className="w-16 h-16 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      <svg
+                        className="w-16 h-16 text-slate-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                        />
                       </svg>
                     )}
                   </div>
