@@ -6,6 +6,7 @@ import { useI18n } from "@contexts/I18nContext";
 import { apiService } from "@services/api";
 import LoadingSpinner from "@components/LoadingSpinner";
 import ExoplanetCharts from "@components/ExoplanetCharts";
+import Icon from "../components/UI/Icon";
 
 const ExoplanetDetails = () => {
   const { planetId } = useParams();
@@ -58,7 +59,7 @@ const ExoplanetDetails = () => {
       return {
         status: "Outside Habitable Zone",
         color: "text-red-400 bg-red-500/20",
-        icon: "❄️",
+        icon: "snowflake",
       };
     }
   };
@@ -145,7 +146,11 @@ const ExoplanetDetails = () => {
 
             <div className="mb-6">
               <div className="text-8xl mb-4">
-                {exoplanet.habitable ? "🌍" : "🪐"}
+                {exoplanet.habitable ? (
+                  <Icon name="globe" size={20} />
+                ) : (
+                  <Icon name="satellite" size={20} />
+                )}
               </div>
               <h1 className="text-5xl font-bold text-gradient font-space mb-4">
                 {exoplanet.name}
@@ -178,7 +183,7 @@ const ExoplanetDetails = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-slate-700/50 rounded-lg p-6 text-center">
-                <div className="text-3xl mb-2">⚖️</div>
+                <Icon name="scale" size={24} className="mb-2" />
                 <div className="text-slate-400 text-sm mb-1">Mass</div>
                 <div className="text-white font-bold text-2xl">
                   {formatNumber(exoplanet.mass)} M⊕
@@ -196,7 +201,7 @@ const ExoplanetDetails = () => {
               </div>
 
               <div className="bg-slate-700/50 rounded-lg p-6 text-center">
-                <div className="text-3xl mb-2">🌌</div>
+                <Icon name="satellite" size={24} className="mb-2" />
                 <div className="text-slate-400 text-sm mb-1">Distance</div>
                 <div className="text-white font-bold text-2xl">
                   {formatNumber(exoplanet.distance)} ly
@@ -205,7 +210,7 @@ const ExoplanetDetails = () => {
               </div>
 
               <div className="bg-slate-700/50 rounded-lg p-6 text-center">
-                <div className="text-3xl mb-2">🌡️</div>
+                <Icon name="temperature" size={24} className="mb-2" />
                 <div className="text-slate-400 text-sm mb-1">Temperature</div>
                 <div className="text-white font-bold text-2xl">
                   {formatNumber(exoplanet.temperature)} K
@@ -337,7 +342,7 @@ const ExoplanetDetails = () => {
                 {exoplanet.habitable && (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
-                      <div className="text-3xl mb-2">🌡️</div>
+                      <Icon name="temperature" size={24} className="mb-2" />
                       <div className="text-sm text-slate-400">Temperature</div>
                       <div className="text-white font-medium">Suitable</div>
                     </div>
@@ -349,7 +354,7 @@ const ExoplanetDetails = () => {
                       <div className="text-white font-medium">Possible</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl mb-2">🌍</div>
+                      <Icon name="globe" size={24} className="mb-2" />
                       <div className="text-sm text-slate-400">
                         Earth Similarity
                       </div>
@@ -380,7 +385,7 @@ const ExoplanetDetails = () => {
               </div>
 
               <div className="bg-slate-700/50 rounded-lg p-4 text-center">
-                <div className="text-2xl mb-2">⭐</div>
+                <Icon name="star" size={20} className="mb-2" />
                 <div className="text-slate-400 text-sm mb-1">Host Star</div>
                 <div className="text-white font-semibold text-lg">
                   {exoplanet.hostStar || "Unknown"}
@@ -532,7 +537,8 @@ const ExoplanetDetails = () => {
               }}
               className="btn-secondary"
             >
-              📋 Copy Info
+              <Icon name="copy" size={16} className="mr-2" />
+              Copy Info
             </button>
 
             <button
@@ -547,7 +553,8 @@ const ExoplanetDetails = () => {
               }}
               className="btn-secondary"
             >
-              📤 Share
+              <Icon name="share" size={16} className="mr-2" />
+              Share
             </button>
 
             <button
@@ -559,7 +566,8 @@ const ExoplanetDetails = () => {
               }}
               className="btn-primary"
             >
-              🌌 NASA Archive
+              <Icon name="satellite" size={16} className="mr-2" />
+              NASA Archive
             </button>
           </div>
         </motion.div>

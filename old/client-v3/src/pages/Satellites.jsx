@@ -7,6 +7,7 @@ import LoadingSpinner from "@components/LoadingSpinner";
 import SatelliteMap from "@components/SatelliteMap";
 import Pagination from "@components/Pagination";
 import SatelliteDetailsModal from "@components/SatelliteDetailsModal";
+import Icon from "../components/UI/Icon";
 
 const Satellites = () => {
   const { t } = useI18n();
@@ -119,7 +120,8 @@ const Satellites = () => {
             {/* Data Source Indicator */}
             <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 border border-neon-blue/50 rounded-full">
               <span className="text-neon-blue text-sm font-medium">
-                🛰️ NASA Satellites Data
+                <Icon name="satellite" size={20} className="mr-2" /> NASA
+                Satellites Data
               </span>
               <span className="text-slate-400 text-xs">
                 ({satellites.length} satellites)
@@ -133,7 +135,8 @@ const Satellites = () => {
             {error && (
               <div className="mt-2 inline-flex items-center gap-2 px-3 py-1 bg-yellow-500/20 border border-yellow-500/50 rounded-full">
                 <span className="text-yellow-400 text-xs">
-                  ⚠️ Using offline data - NASA APIs temporarily unavailable
+                  <Icon name="warning" size={20} className="mr-2" /> Using
+                  offline data - NASA APIs temporarily unavailable
                 </span>
               </div>
             )}
@@ -279,7 +282,7 @@ const Satellites = () => {
                         className="w-full h-full object-cover rounded-lg"
                       />
                     ) : (
-                      <div className="text-4xl">🛰️</div>
+                      <Icon name="satellite" size={32} className="text-white" />
                     )}
                   </div>
 

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useI18n } from "@contexts/I18nContext";
+import Icon from "./UI/Icon";
 import { useMutation } from "@tanstack/react-query";
 import { sendChatMessage, getQuickResponse } from "@services/geminiApi";
 
@@ -18,6 +19,20 @@ const ChatBot = () => {
   useEffect(() => {
     scrollToBottom();
   }, [chatHistory]);
+
+  // Prevent body scroll when chatbot is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
 
   // Gemini API chat mutation
   const chatMutation = useMutation({
@@ -150,7 +165,7 @@ const ChatBot = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-end justify-end p-4 sm:items-center sm:justify-center"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={() => setIsOpen(false)}
           >
             <motion.div
@@ -218,7 +233,11 @@ const ChatBot = () => {
               >
                 {chatHistory.length === 0 ? (
                   <div className="text-center py-4">
-                    <div className="text-4xl mb-3 animate-pulse">🤖</div>
+                    <Icon
+                      name="gear"
+                      size={32}
+                      className="mb-3 animate-pulse text-white"
+                    />
                     <h3 className="text-lg font-semibold text-white mb-2 bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent">
                       Welcome to NASA Explorer AI!
                     </h3>

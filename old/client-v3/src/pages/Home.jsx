@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useI18n } from "@contexts/I18nContext";
 import Starfield from "@components/Starfield";
 import ThreeScene from "@components/ThreeScene";
+import Icon from "../components/UI/Icon";
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -55,28 +56,28 @@ const Home = () => {
 
   const features = [
     {
-      icon: "🚀",
+      icon: "rocket",
       title: t("home.features.missions"),
       description: t("home.features.missionsDesc"),
       link: "/missions",
       color: "from-neon-blue to-cyan-500",
     },
     {
-      icon: "🪐",
+      icon: "satellite",
       title: t("home.features.exoplanets"),
       description: t("home.features.exoplanetsDesc"),
       link: "/exoplanets",
       color: "from-neon-purple to-pink-500",
     },
     {
-      icon: "🛰️",
+      icon: "satellite",
       title: t("home.features.satellites"),
       description: t("home.features.satellitesDesc"),
       link: "/satellites",
       color: "from-neon-green to-emerald-500",
     },
     {
-      icon: "🤖",
+      icon: "robot",
       title: t("home.features.ai"),
       description: t("home.features.aiDesc"),
       link: "/ai",
@@ -246,7 +247,11 @@ const Home = () => {
                     <div
                       className={`w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 rounded-full bg-gradient-to-r ${feature.color} flex items-center justify-center text-xl sm:text-2xl transform group-hover:scale-110 transition-transform duration-300`}
                     >
-                      {feature.icon}
+                      <Icon
+                        name={feature.icon}
+                        size={24}
+                        className="text-white"
+                      />
                     </div>
                     <h3
                       className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-3 sm:mb-4"

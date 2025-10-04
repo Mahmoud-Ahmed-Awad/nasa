@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useI18n } from "@contexts/I18nContext";
 import { Link } from "react-router-dom";
 import Pagination from "@components/Pagination";
+import Icon from "../components/UI/Icon";
 
 const Dashboard = () => {
   const { t } = useI18n();
@@ -11,25 +12,25 @@ const Dashboard = () => {
     {
       label: "Missions Explored",
       value: "12",
-      icon: "🚀",
+      icon: "rocket",
       color: "from-neon-blue to-cyan-500",
     },
     {
       label: "Exoplanets Discovered",
       value: "47",
-      icon: "🪐",
+      icon: "satellite",
       color: "from-neon-purple to-pink-500",
     },
     {
       label: "Satellites Tracked",
       value: "23",
-      icon: "🛰️",
+      icon: "satellite",
       color: "from-neon-green to-emerald-500",
     },
     {
       label: "AI Conversations",
       value: "156",
-      icon: "🤖",
+      icon: "gear",
       color: "from-neon-orange to-yellow-500",
     },
   ];
@@ -42,25 +43,25 @@ const Dashboard = () => {
       type: "mission",
       title: "Explored James Webb Space Telescope",
       time: "2 hours ago",
-      icon: "🚀",
+      icon: "rocket",
     },
     {
       type: "exoplanet",
       title: "Discovered Kepler-452b",
       time: "1 day ago",
-      icon: "🪐",
+      icon: "satellite",
     },
     {
       type: "satellite",
       title: "Tracked International Space Station",
       time: "2 days ago",
-      icon: "🛰️",
+      icon: "satellite",
     },
     {
       type: "ai",
       title: "Asked about Mars exploration",
       time: "3 days ago",
-      icon: "🤖",
+      icon: "gear",
     },
   ];
 
@@ -68,37 +69,37 @@ const Dashboard = () => {
     {
       title: "Space Explorer",
       description: "Explored 10+ missions",
-      icon: "🏆",
+      icon: "rocket",
       unlocked: true,
     },
     {
       title: "Exoplanet Hunter",
       description: "Discovered 25+ exoplanets",
-      icon: "🔍",
+      icon: "telescope",
       unlocked: true,
     },
     {
       title: "Satellite Tracker",
       description: "Tracked 20+ satellites",
-      icon: "📡",
+      icon: "antenna",
       unlocked: true,
     },
     {
       title: "AI Conversationalist",
       description: "Had 100+ AI conversations",
-      icon: "💬",
+      icon: "gear",
       unlocked: true,
     },
     {
       title: "Space Scholar",
       description: "Complete all tutorials",
-      icon: "🎓",
+      icon: "astronaut",
       unlocked: false,
     },
     {
       title: "Cosmic Navigator",
       description: "Visit all sections",
-      icon: "🧭",
+      icon: "satellite",
       unlocked: false,
     },
   ];
@@ -168,7 +169,7 @@ const Dashboard = () => {
                   <div
                     className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r ${stat.color} flex items-center justify-center text-xl sm:text-2xl`}
                   >
-                    {stat.icon}
+                    <Icon name={stat.icon} size={24} className="text-white" />
                   </div>
                 </div>
               </motion.div>
@@ -197,7 +198,11 @@ const Dashboard = () => {
                       className="flex items-center space-x-3 sm:space-x-4 spacing-responsive-sm bg-slate-800/50 rounded-lg hover:bg-slate-800/70 transition-colors duration-300"
                     >
                       <div className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-700 rounded-full flex items-center justify-center text-sm sm:text-lg">
-                        {activity.icon}
+                        <Icon
+                          name={activity.icon}
+                          size={16}
+                          className="text-white"
+                        />
                       </div>
                       <div className="flex-1">
                         <h3 className="text-white font-medium text-responsive-sm">
@@ -246,7 +251,7 @@ const Dashboard = () => {
                     className="block p-4 bg-slate-800/50 hover:bg-slate-800/70 rounded-lg transition-colors duration-300"
                   >
                     <div className="flex items-center space-x-3">
-                      <span className="text-2xl">🚀</span>
+                      <Icon name="rocket" size={24} className="text-white" />
                       <div>
                         <h3 className="text-white font-medium">
                           Explore Missions
@@ -263,7 +268,7 @@ const Dashboard = () => {
                     className="block p-4 bg-slate-800/50 hover:bg-slate-800/70 rounded-lg transition-colors duration-300"
                   >
                     <div className="flex items-center space-x-3">
-                      <span className="text-2xl">🪐</span>
+                      <Icon name="satellite" size={24} className="text-white" />
                       <div>
                         <h3 className="text-white font-medium">
                           View Exoplanets
@@ -280,7 +285,7 @@ const Dashboard = () => {
                     className="block p-4 bg-slate-800/50 hover:bg-slate-800/70 rounded-lg transition-colors duration-300"
                   >
                     <div className="flex items-center space-x-3">
-                      <span className="text-2xl">🛰️</span>
+                      <Icon name="satellite" size={24} className="text-white" />
                       <div>
                         <h3 className="text-white font-medium">
                           Track Satellites
@@ -297,7 +302,7 @@ const Dashboard = () => {
                     className="block p-4 bg-slate-800/50 hover:bg-slate-800/70 rounded-lg transition-colors duration-300"
                   >
                     <div className="flex items-center space-x-3">
-                      <span className="text-2xl">🤖</span>
+                      <Icon name="gear" size={24} className="text-white" />
                       <div>
                         <h3 className="text-white font-medium">AI Assistant</h3>
                         <p className="text-slate-400 text-sm">Ask questions</p>
@@ -310,7 +315,7 @@ const Dashboard = () => {
                     className="block p-4 bg-slate-800/50 hover:bg-slate-800/70 rounded-lg transition-colors duration-300"
                   >
                     <div className="flex items-center space-x-3">
-                      <span className="text-2xl">⚙️</span>
+                      <Icon name="gear" size={24} className="text-white" />
                       <div>
                         <h3 className="text-white font-medium">Settings</h3>
                         <p className="text-slate-400 text-sm">
@@ -347,7 +352,11 @@ const Dashboard = () => {
                           achievement.unlocked ? "" : "grayscale opacity-50"
                         }`}
                       >
-                        {achievement.icon}
+                        <Icon
+                          name={achievement.icon}
+                          size={24}
+                          className="text-white"
+                        />
                       </div>
                       <div className="flex-1">
                         <h3

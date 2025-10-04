@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useI18n } from "@contexts/I18nContext";
+import Icon from "../components/UI/Icon";
 
 const Team = () => {
   const { t } = useI18n();
@@ -27,7 +28,7 @@ const Team = () => {
     {
       name: "Malak Nour",
       role: "Designer",
-      bio: "Malak Nabil is a Designer with a passion for building scalable and efficient systems. She is responsible for the design of the presentation and other designs.",
+      bio: "Malak Nour is a Designer with a passion for building scalable and efficient systems. She is responsible for the design of the presentation and other designs.",
       image: "/assets/team/malak-nour.jpg",
     },
     {
@@ -77,7 +78,7 @@ const Team = () => {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="text-4xl">👨‍🚀</div>
+                      <Icon name="astronaut" size={32} className="text-white" />
                     )}
                   </div>
                   <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useI18n } from "@contexts/I18nContext";
+import Icon from "./UI/Icon";
 
 const MissionModal = ({ mission, onClose }) => {
   const { t } = useI18n();
@@ -13,7 +14,7 @@ const MissionModal = ({ mission, onClose }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        className="sticky inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 w-full max-h-screen h-full"
         onClick={onClose}
       >
         <motion.div
@@ -33,7 +34,7 @@ const MissionModal = ({ mission, onClose }) => {
                   className="w-full h-full object-cover rounded-t-2xl"
                 />
               ) : (
-                <div className="text-6xl">🚀</div>
+                <Icon name="rocket" size={48} className="text-white" />
               )}
             </div>
 

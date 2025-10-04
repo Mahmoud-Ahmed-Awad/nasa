@@ -7,6 +7,7 @@ import LoadingSpinner from "@components/LoadingSpinner";
 import ExoplanetCharts from "@components/ExoplanetCharts";
 import Pagination from "@components/Pagination";
 import ExoplanetDetailsModal from "@components/ExoplanetDetailsModal";
+import Icon from "../components/UI/Icon";
 
 const Exoplanets = () => {
   const { t } = useI18n();
@@ -203,7 +204,8 @@ const Exoplanets = () => {
               className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 border border-neon-blue/50 rounded-full"
             >
               <span className="text-neon-blue text-sm font-medium">
-                🌌 NASA Exoplanet Archive Data
+                <Icon name="satellite" size={20} className="mr-2" /> NASA
+                Exoplanet Archive Data
               </span>
               <span className="text-slate-400 text-xs">
                 ({exoplanets.length} planets)
@@ -221,7 +223,8 @@ const Exoplanets = () => {
                 className="mt-2 inline-flex items-center gap-2 px-3 py-1 bg-yellow-500/20 border border-yellow-500/50 rounded-full"
               >
                 <span className="text-yellow-400 text-xs">
-                  ⚠️ Using offline data - NASA APIs temporarily unavailable
+                  <Icon name="warning" size={20} className="mr-2" /> Using
+                  offline data - NASA APIs temporarily unavailable
                 </span>
               </motion.div>
             )}
@@ -242,7 +245,7 @@ const Exoplanets = () => {
                 }`}
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-2xl">🌍</span>
+                  <Icon name="globe" size={24} className="text-white" />
                   <div className="text-left">
                     <div className="font-semibold">All Exoplanets</div>
                     <div className="text-xs opacity-75">

@@ -6,6 +6,7 @@ import { apiService } from "@services/api";
 import LoadingSpinner from "@components/LoadingSpinner";
 import MissionModal from "@components/MissionModal";
 import Pagination from "@components/Pagination";
+import Icon from "../components/UI/Icon";
 
 const Missions = () => {
   const { t } = useI18n();
@@ -128,7 +129,8 @@ const Missions = () => {
             {/* API Status Indicator */}
             <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 border border-neon-blue/50 rounded-full">
               <span className="text-neon-blue text-sm font-medium">
-                🚀 NASA Missions Data
+                <Icon name="rocket" size={20} className="mr-2" /> NASA Missions
+                Data
               </span>
               <span className="text-slate-400 text-xs">
                 ({missions?.length || 0} missions)
@@ -142,7 +144,8 @@ const Missions = () => {
             {error && (
               <div className="mt-2 inline-flex items-center gap-2 px-3 py-1 bg-yellow-500/20 border border-yellow-500/50 rounded-full">
                 <span className="text-yellow-400 text-xs">
-                  ⚠️ Using offline data - NASA APIs temporarily unavailable
+                  <Icon name="warning" size={20} className="mr-2" /> Using
+                  offline data - NASA APIs temporarily unavailable
                 </span>
               </div>
             )}
@@ -274,7 +277,7 @@ const Missions = () => {
                         className="w-full h-full object-cover rounded-lg"
                       />
                     ) : (
-                      <div className="text-4xl">🚀</div>
+                      <Icon name="rocket" size={32} className="text-white" />
                     )}
                   </div>
 
@@ -347,7 +350,11 @@ const Missions = () => {
               animate={{ opacity: 1 }}
               className="text-center py-12"
             >
-              <div className="text-6xl mb-4">🔍</div>
+              <Icon
+                name="telescope"
+                size={48}
+                className="text-slate-400 mb-4"
+              />
               <h3 className="text-xl font-semibold text-slate-300 mb-2">
                 No missions found
               </h3>

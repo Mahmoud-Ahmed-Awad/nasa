@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import Icon from "./UI/Icon";
 
 // Fix for default markers in react-leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -14,6 +15,46 @@ L.Icon.Default.mergeOptions({
 const SatelliteMap = ({ satellites, selectedSatellite, onSatelliteSelect }) => {
   const [mapCenter] = useState([20, 0]);
   const [mapZoom] = useState(2);
+
+  // Helper function to get icon name based on satellite type
+  const getIconName = (type) => {
+    switch (type) {
+      case "Space Station":
+        return "spaceStation";
+      case "Earth Observation":
+        return "antenna";
+      case "Solar Observatory":
+        return "sun";
+      case "Space Telescope":
+        return "telescope";
+      case "Near Earth Object":
+        return "comet";
+      case "Solar Probe":
+        return "rocket";
+      default:
+        return "satellite";
+    }
+  };
+
+  // Helper function to get emoji/symbol for map markers
+  const getMapIconSymbol = (type) => {
+    switch (type) {
+      case "Space Station":
+        return "🏗️";
+      case "Earth Observation":
+        return "📡";
+      case "Solar Observatory":
+        return "☀️";
+      case "Space Telescope":
+        return "🔭";
+      case "Near Earth Object":
+        return "☄️";
+      case "Solar Probe":
+        return "🚀";
+      default:
+        return "🛰️";
+    }
+  };
 
   // Create custom satellite icons based on type
   const createSatelliteIcon = (satellite) => {
@@ -36,25 +77,6 @@ const SatelliteMap = ({ satellites, selectedSatellite, onSatelliteSelect }) => {
       }
     };
 
-    const getIconEmoji = (type) => {
-      switch (type) {
-        case "Space Station":
-          return "🏗️";
-        case "Earth Observation":
-          return "📡";
-        case "Solar Observatory":
-          return "☀️";
-        case "Space Telescope":
-          return "🔭";
-        case "Near Earth Object":
-          return "☄️";
-        case "Solar Probe":
-          return "🚀";
-        default:
-          return "🛰️";
-      }
-    };
-
     return new L.DivIcon({
       html: `
         <div style="
@@ -73,7 +95,7 @@ const SatelliteMap = ({ satellites, selectedSatellite, onSatelliteSelect }) => {
           cursor: pointer;
           transition: transform 0.2s ease;
         " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-          ${getIconEmoji(satellite.type)}
+          ${getMapIconSymbol(satellite.type)}
         </div>
       `,
       className: "custom-satellite-icon",
@@ -148,19 +170,11 @@ const SatelliteMap = ({ satellites, selectedSatellite, onSatelliteSelect }) => {
                   <div className="p-3 min-w-[250px] max-w-[300px]">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="text-2xl">
-                        {satellite.type === "Space Station"
-                          ? "🏗️"
-                          : satellite.type === "Earth Observation"
-                          ? "📡"
-                          : satellite.type === "Solar Observatory"
-                          ? "☀️"
-                          : satellite.type === "Space Telescope"
-                          ? "🔭"
-                          : satellite.type === "Near Earth Object"
-                          ? "☄️"
-                          : satellite.type === "Solar Probe"
-                          ? "🚀"
-                          : "🛰️"}
+                        <Icon
+                          name={getIconName(satellite.type)}
+                          size={24}
+                          className="text-slate-800"
+                        />
                       </div>
                       <h3 className="font-bold text-lg text-slate-800">
                         {satellite.name}

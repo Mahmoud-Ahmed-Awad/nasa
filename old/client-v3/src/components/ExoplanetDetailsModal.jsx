@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useI18n } from "@contexts/I18nContext";
+import Icon from "./UI/Icon";
 
 const ExoplanetDetailsModal = ({ exoplanet, onClose }) => {
   const { t } = useI18n();
   const navigate = useNavigate();
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (exoplanet) {
+      document.body.style.overflow = "hidden";
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [exoplanet]);
 
   if (!exoplanet) return null;
 
@@ -40,7 +53,7 @@ const ExoplanetDetailsModal = ({ exoplanet, onClose }) => {
       return {
         status: "Outside Habitable Zone",
         color: "text-red-400 bg-red-500/20",
-        icon: "❄️",
+        icon: "snowflake",
       };
     }
   };
@@ -53,7 +66,7 @@ const ExoplanetDetailsModal = ({ exoplanet, onClose }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 p-4 flex items-center justify-center w-full h-full"
+        className="sticky inset-0 bg-black/50 backdrop-blur-sm z-50 p-4 flex items-center justify-center w-full max-h-screen h-full"
         onClick={onClose}
       >
         <motion.div
@@ -74,7 +87,11 @@ const ExoplanetDetailsModal = ({ exoplanet, onClose }) => {
             <div className="aspect-video bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 rounded-t-2xl flex items-center justify-center">
               <div className="text-center">
                 <div className="text-8xl mb-4">
-                  {exoplanet.habitable ? "🌍" : "🪐"}
+                  {exoplanet.habitable ? (
+                    <Icon name="globe" size={20} />
+                  ) : (
+                    <Icon name="satellite" size={20} />
+                  )}
                 </div>
                 <h1 className="text-3xl font-bold text-white">
                   {exoplanet.name}
@@ -260,7 +277,7 @@ const ExoplanetDetailsModal = ({ exoplanet, onClose }) => {
                 {exoplanet.habitable && (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                     <div className="text-center">
-                      <div className="text-2xl mb-2">🌡️</div>
+                      <Icon name="temperature" size={24} className="mb-2" />
                       <div className="text-sm text-slate-400">Temperature</div>
                       <div className="text-white font-medium">Suitable</div>
                     </div>
@@ -272,7 +289,7 @@ const ExoplanetDetailsModal = ({ exoplanet, onClose }) => {
                       <div className="text-white font-medium">Possible</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl mb-2">🌍</div>
+                      <Icon name="globe" size={24} className="mb-2" />
                       <div className="text-sm text-slate-400">
                         Earth Similarity
                       </div>
@@ -444,7 +461,8 @@ const ExoplanetDetailsModal = ({ exoplanet, onClose }) => {
                 }}
                 className="btn-secondary"
               >
-                📋 Copy Info
+                <Icon name="copy" size={16} className="mr-2" />
+                Copy Info
               </button>
 
               <button
@@ -460,7 +478,8 @@ const ExoplanetDetailsModal = ({ exoplanet, onClose }) => {
                 }}
                 className="btn-secondary"
               >
-                📤 Share
+                <Icon name="share" size={16} className="mr-2" />
+                Share
               </button>
 
               <button
@@ -473,7 +492,8 @@ const ExoplanetDetailsModal = ({ exoplanet, onClose }) => {
                 }}
                 className="btn-secondary"
               >
-                🌌 NASA Archive
+                <Icon name="satellite" size={16} className="mr-2" />
+                NASA Archive
               </button>
             </div>
           </div>

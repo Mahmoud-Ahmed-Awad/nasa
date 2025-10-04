@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useI18n } from "@contexts/I18nContext";
+import Icon from "./UI/Icon";
 
 const SatelliteDetailsModal = ({ satellite, onClose }) => {
   const { t } = useI18n();
@@ -37,17 +38,17 @@ const SatelliteDetailsModal = ({ satellite, onClose }) => {
     return colors[status] || "text-gray-400 bg-gray-500/20";
   };
 
-  // Helper function to get satellite emoji
-  const getSatelliteEmoji = (type) => {
-    const emojis = {
-      "Space Station": "🏗️",
-      "Earth Observation": "📡",
-      "Solar Observatory": "☀️",
-      "Space Telescope": "🔭",
-      "Near Earth Object": "☄️",
-      "Solar Probe": "🚀",
+  // Helper function to get satellite icon
+  const getSatelliteIcon = (type) => {
+    const icons = {
+      "Space Station": "spaceStation",
+      "Earth Observation": "antenna",
+      "Solar Observatory": "sun",
+      "Space Telescope": "telescope",
+      "Near Earth Object": "comet",
+      "Solar Probe": "rocket",
     };
-    return emojis[type] || "🛰️";
+    return icons[type] || "satellite";
   };
 
   return (
@@ -56,19 +57,8 @@ const SatelliteDetailsModal = ({ satellite, onClose }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        className="sticky inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 w-full max-h-screen h-full"
         onClick={onClose}
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "1rem",
-        }}
       >
         <motion.div
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -88,7 +78,11 @@ const SatelliteDetailsModal = ({ satellite, onClose }) => {
             <div className="aspect-video bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 rounded-t-2xl flex items-center justify-center">
               <div className="text-center">
                 <div className="text-8xl mb-4">
-                  {getSatelliteEmoji(satellite.type)}
+                  <Icon
+                    name={getSatelliteIcon(satellite.type)}
+                    size={80}
+                    className="text-white"
+                  />
                 </div>
                 <h1 className="text-3xl font-bold text-white">
                   {satellite.name}
@@ -360,7 +354,8 @@ const SatelliteDetailsModal = ({ satellite, onClose }) => {
                 }}
                 className="btn-secondary"
               >
-                📋 Copy Info
+                <Icon name="copy" size={16} className="mr-2" />
+                Copy Info
               </button>
 
               <button
@@ -376,7 +371,8 @@ const SatelliteDetailsModal = ({ satellite, onClose }) => {
                 }}
                 className="btn-secondary"
               >
-                📤 Share
+                <Icon name="share" size={16} className="mr-2" />
+                Share
               </button>
 
               <button
@@ -389,7 +385,8 @@ const SatelliteDetailsModal = ({ satellite, onClose }) => {
                 }}
                 className="btn-primary"
               >
-                🌌 NASA Tracking
+                <Icon name="external" size={16} className="mr-2" />
+                NASA Tracking
               </button>
             </div>
           </div>

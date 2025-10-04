@@ -14,7 +14,6 @@ const Footer = () => {
 
   const resources = [
     { path: "/dashboard", label: t("nav.dashboard") },
-    { path: "/ai", label: t("nav.ai") },
     { path: "/contact", label: t("nav.contact") },
     { path: "/settings", label: t("nav.settings") },
   ];
@@ -26,9 +25,13 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-neon-blue to-neon-purple rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">N</span>
-              </div>
+              {(
+                <img src="/logo.png" className="w-12 h-12 sm:w-12 sm:h-12" />
+              ) || (
+                <div className="w-8 h-8 bg-gradient-to-r from-neon-blue to-neon-purple rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">N</span>
+                </div>
+              )}
               <span className="text-xl font-bold text-gradient font-space">
                 NASA Explorer
               </span>

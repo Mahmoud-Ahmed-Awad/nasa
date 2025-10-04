@@ -1,24 +1,25 @@
-import React from 'react'
+import React from "react";
+import Icon from "./UI/Icon";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = { hasError: false, error: null, errorInfo: null }
+    super(props);
+    this.state = { hasError: false, error: null, errorInfo: null };
   }
 
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI
-    return { hasError: true }
+    return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
     // Log the error to console or error reporting service
-    console.error('ErrorBoundary caught an error:', error, errorInfo)
-    
+    console.error("ErrorBoundary caught an error:", error, errorInfo);
+
     this.setState({
       error: error,
-      errorInfo: errorInfo
-    })
+      errorInfo: errorInfo,
+    });
   }
 
   render() {
@@ -28,15 +29,16 @@ class ErrorBoundary extends React.Component {
         <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center px-4">
           <div className="max-w-md w-full text-center">
             <div className="card">
-              <div className="text-6xl mb-4">🚀</div>
+              <Icon name="rocket" size={48} className="text-white mb-4" />
               <h1 className="text-2xl font-bold text-white mb-4">
                 Oops! Something went wrong
               </h1>
               <p className="text-slate-300 mb-6">
-                We encountered an unexpected error. Our team has been notified and is working to fix it.
+                We encountered an unexpected error. Our team has been notified
+                and is working to fix it.
               </p>
-              
-              {process.env.NODE_ENV === 'development' && this.state.error && (
+
+              {process.env.NODE_ENV === "development" && this.state.error && (
                 <details className="mb-6 text-left">
                   <summary className="cursor-pointer text-neon-blue hover:text-neon-purple">
                     Error Details (Development)
@@ -51,7 +53,7 @@ class ErrorBoundary extends React.Component {
                   </div>
                 </details>
               )}
-              
+
               <div className="space-y-3">
                 <button
                   onClick={() => window.location.reload()}
@@ -60,7 +62,13 @@ class ErrorBoundary extends React.Component {
                   Refresh Page
                 </button>
                 <button
-                  onClick={() => this.setState({ hasError: false, error: null, errorInfo: null })}
+                  onClick={() =>
+                    this.setState({
+                      hasError: false,
+                      error: null,
+                      errorInfo: null,
+                    })
+                  }
                   className="w-full btn-secondary"
                 >
                   Try Again
@@ -69,11 +77,11 @@ class ErrorBoundary extends React.Component {
             </div>
           </div>
         </div>
-      )
+      );
     }
 
-    return this.props.children
+    return this.props.children;
   }
 }
 
-export default ErrorBoundary
+export default ErrorBoundary;

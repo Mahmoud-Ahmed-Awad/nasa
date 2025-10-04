@@ -6,6 +6,7 @@ import { useTheme } from "@contexts/ThemeContext";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeToggle from "./ThemeToggle";
 import TimerWidget from "./TimerWidget";
+import Icon from "./UI/Icon";
 
 const Navbar = () => {
   const { t } = useI18n();
@@ -30,71 +31,85 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
+
   const navItems = [
     {
       path: "/",
       label: t("nav.home"),
-      icon: "🏠",
+      icon: "home",
       description: "Home page",
     },
     {
       path: "/missions",
       label: t("nav.missions"),
-      icon: "🚀",
+      icon: "rocket",
       description: "NASA missions",
     },
     {
       path: "/exoplanets",
       label: t("nav.exoplanets"),
-      icon: "🌌",
+      icon: "satellite",
       description: "Exoplanet data",
     },
     {
       path: "/satellites",
       label: t("nav.satellites"),
-      icon: "🛰️",
+      icon: "satellite",
       description: "Satellite tracking",
     },
     {
       path: "/dashboard",
       label: t("nav.dashboard"),
-      icon: "📊",
+      icon: "gear",
       description: "Data dashboard",
     },
     {
       path: "/team",
       label: t("nav.team"),
-      icon: "👥",
+      icon: "astronaut",
       description: "Our team",
     },
     // {
     //   path: "/ai",
     //   label: t("nav.ai"),
-    //   icon: "🤖",
+    //   icon: "gear",
     //   description: "AI assistant",
     // },
     {
       path: "/advanced-3d",
       label: "3D",
-      icon: "🌍",
+      icon: "globe",
       description: "3D visualization",
     },
     {
       path: "/data-visualization",
       label: "Charts",
-      icon: "📈",
+      icon: "trendingUp",
       description: "Data charts",
     },
     {
       path: "/interactive-demo",
       label: "Demo",
-      icon: "🎮",
+      icon: "gamepad",
       description: "Interactive demo",
     },
     {
       path: "/contact",
       label: t("nav.contact"),
-      icon: "📧",
+      icon: "mail",
       description: "Contact us",
     },
   ];
@@ -126,23 +141,24 @@ const Navbar = () => {
               to="/"
               className="flex items-center space-x-2 touch-target group"
             >
-              <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-r from-neon-blue to-neon-purple rounded-lg flex items-center justify-center group-hover:shadow-lg group-hover:shadow-neon-blue/25 transition-all duration-300">
-                <span className="text-white font-bold text-sm sm:text-lg">
-                  N
-                </span>
-              </div>
-              <span className="text-lg sm:text-xl font-bold text-gradient font-space hidden xs:inline group-hover:text-neon-blue transition-colors duration-300">
+              {(
+                <img src="/logo.png" className="w-12 h-12 sm:w-12 sm:h-12" />
+              ) || (
+                <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-r from-neon-blue to-neon-purple rounded-lg flex items-center justify-center group-hover:shadow-lg group-hover:shadow-neon-blue/25 transition-all duration-300">
+                  <span className="text-white font-bold text-sm sm:text-lg">
+                    N
+                  </span>
+                </div>
+              )}
+              <span className="text-lg sm:text-xl font-bold text-gradient font-space group-hover:text-neon-blue transition-colors duration-300">
                 NASA Explorer
-              </span>
-              <span className="text-lg sm:text-xl font-bold text-gradient font-space xs:hidden group-hover:text-neon-blue transition-colors duration-300">
-                NASA
               </span>
             </Link>
           </motion.div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Show only 3 main options */}
           <div className="hidden lg:flex items-center space-x-2 xl:space-x-4">
-            {navItems.slice(0, 6).map((item, index) => (
+            {navItems.slice(0, 3).map((item, index) => (
               <motion.div
                 key={item.path}
                 initial={{ opacity: 0, y: -20 }}
@@ -160,7 +176,7 @@ const Navbar = () => {
                   }`}
                   title={item.description}
                 >
-                  <span className="mr-1">{item.icon}</span>
+                  <Icon name={item.icon} size={16} className="mr-1" />
                   <span>{item.label}</span>
                   {isActive(item.path) && (
                     <motion.div
@@ -178,44 +194,22 @@ const Navbar = () => {
               </motion.div>
             ))}
 
-            {/* More dropdown for additional items */}
-            <div className="relative group">
-              <button className="flex items-center px-3 xl:px-4 py-2 rounded-lg text-xs xl:text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-neon-blue hover:bg-white/5 transition-all duration-300 touch-target">
-                <span className="mr-1">⋯</span>
-                <span>More</span>
-              </button>
-
-              {/* Dropdown menu */}
-              <div className="absolute top-full right-0 mt-2 w-48 glass rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                <div className="py-2">
-                  {navItems.slice(6).map((item) => (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      className={`flex items-center px-4 py-2 text-sm transition-colors duration-200 ${
-                        isActive(item.path)
-                          ? "text-neon-blue bg-white/10"
-                          : "text-slate-700 dark:text-slate-300 hover:text-neon-blue hover:bg-white/5"
-                      }`}
-                    >
-                      <span className="mr-2 flex-shrink-0">{item.icon}</span>
-                      <div className="min-w-0">
-                        <div className="font-medium truncate">{item.label}</div>
-                        <div className="text-xs text-slate-500 dark:text-slate-400 truncate">
-                          {item.description}
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
+            {/* More button to open offcanvas */}
+            {/* <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="flex items-center px-3 xl:px-4 py-2 rounded-lg text-xs xl:text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-neon-blue hover:bg-white/5 transition-all duration-300 touch-target"
+            >
+              <span className="mr-1">⋯</span>
+              <span>More</span>
+            </motion.button> */}
           </div>
 
           {/* Right side controls */}
           <div className="flex items-center space-x-1 sm:space-x-2">
             {/* Search Button */}
-            <motion.button
+            {/* <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setShowSearch(!showSearch)}
@@ -235,24 +229,24 @@ const Navbar = () => {
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                 />
               </svg>
-            </motion.button>
+            </motion.button> */}
 
             {/* Timer Widget */}
-            <div className="hidden xl:block">
+            {/* <div className="hidden xl:block">
               <TimerWidget />
-            </div>
+            </div> */}
 
             {/* Language Switcher */}
             <LanguageSwitcher />
 
             {/* Theme Toggle */}
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
 
             {/* Settings Link */}
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 to="/settings"
-                className="p-2 rounded-lg hover:bg-white/10 transition-colors duration-300 touch-target"
+                className="p-2 rounded-lg hover:bg-white/10 transition-colors duration-300 touch-target text-white"
                 title={t("nav.settings")}
               >
                 <svg
@@ -277,12 +271,12 @@ const Navbar = () => {
               </Link>
             </motion.div>
 
-            {/* Mobile menu button */}
+            {/* Menu button - Works on both mobile and desktop */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors duration-300 touch-target"
+              className="p-2 rounded-lg hover:bg-white/10 transition-colors duration-300 touch-target text-white"
             >
               <svg
                 className="w-5 h-5 sm:w-6 sm:h-6"
@@ -311,124 +305,203 @@ const Navbar = () => {
         </div>
 
         {/* Search Bar */}
-        <AnimatePresence>
-          {showSearch && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="border-t border-white/20"
-            >
-              <div className="px-4 py-3">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search pages..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full px-4 py-2 pl-10 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-neon-blue/50 focus:border-neon-blue/50 transition-all duration-300"
-                  />
-                  <svg
-                    className="absolute left-3 top-2.5 w-4 h-4 text-slate-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </div>
+        {
+          // <AnimatePresence>
+          //   {showSearch && (
+          //     <motion.div
+          //       initial={{ opacity: 0, height: 0 }}
+          //       animate={{ opacity: 1, height: "auto" }}
+          //       exit={{ opacity: 0, height: 0 }}
+          //       className="border-t border-white/20"
+          //     >
+          //       <div className="px-4 py-3">
+          //         <div className="relative">
+          //           <input
+          //             type="text"
+          //             placeholder="Search pages..."
+          //             value={searchQuery}
+          //             onChange={(e) => setSearchQuery(e.target.value)}
+          //             className="w-full px-4 py-2 pl-10 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-neon-blue/50 focus:border-neon-blue/50 transition-all duration-300"
+          //           />
+          //           <svg
+          //             className="absolute left-3 top-2.5 w-4 h-4 text-slate-400"
+          //             fill="none"
+          //             stroke="currentColor"
+          //             viewBox="0 0 24 24"
+          //           >
+          //             <path
+          //               strokeLinecap="round"
+          //               strokeLinejoin="round"
+          //               strokeWidth={2}
+          //               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          //             />
+          //           </svg>
+          //         </div>
+          //         {/* Search Results */}
+          //         {searchQuery && (
+          //           <div className="mt-2 max-h-48 overflow-y-auto">
+          //             {filteredNavItems.length > 0 ? (
+          //               <div className="space-y-1">
+          //                 {filteredNavItems.map((item) => (
+          //                   <Link
+          //                     key={item.path}
+          //                     to={item.path}
+          //                     onClick={() => {
+          //                       setSearchQuery("");
+          //                       setShowSearch(false);
+          //                     }}
+          //                     className="flex items-center px-3 py-2 rounded-md text-sm transition-colors duration-200 hover:bg-white/10"
+          //                   >
+          //                     <span className="mr-2 flex-shrink-0">
+          //                       <Icon
+          //                         name={item.icon}
+          //                         size={16}
+          //                         className="text-white"
+          //                       />
+          //                     </span>
+          //                     <div className="min-w-0">
+          //                       <div className="font-medium text-white truncate">
+          //                         {item.label}
+          //                       </div>
+          //                       <div className="text-xs text-slate-400 truncate">
+          //                         {item.description}
+          //                       </div>
+          //                     </div>
+          //                   </Link>
+          //                 ))}
+          //               </div>
+          //             ) : (
+          //               <div className="px-3 py-2 text-sm text-slate-400">
+          //                 No results found
+          //               </div>
+          //             )}
+          //           </div>
+          //         )}
+          //       </div>
+          //     </motion.div>
+          //   )}
+          // </AnimatePresence>
+        }
 
-                {/* Search Results */}
-                {searchQuery && (
-                  <div className="mt-2 max-h-48 overflow-y-auto">
-                    {filteredNavItems.length > 0 ? (
-                      <div className="space-y-1">
-                        {filteredNavItems.map((item) => (
-                          <Link
-                            key={item.path}
-                            to={item.path}
-                            onClick={() => {
-                              setSearchQuery("");
-                              setShowSearch(false);
-                            }}
-                            className="flex items-center px-3 py-2 rounded-md text-sm transition-colors duration-200 hover:bg-white/10"
-                          >
-                            <span className="mr-2 flex-shrink-0">
-                              {item.icon}
-                            </span>
-                            <div className="min-w-0">
-                              <div className="font-medium text-white truncate">
-                                {item.label}
-                              </div>
-                              <div className="text-xs text-slate-400 truncate">
-                                {item.description}
-                              </div>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="px-3 py-2 text-sm text-slate-400">
-                        No results found
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Mobile Navigation */}
+        {/* Offcanvas Navigation - Works on both mobile and desktop */}
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden border-t border-white/20"
-            >
-              <div className="px-2 pt-2 pb-3 space-y-1 max-h-96 overflow-y-auto">
-                {navItems.map((item, index) => (
-                  <motion.div
-                    key={item.path}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    <Link
-                      to={item.path}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={`flex items-center px-3 py-3 rounded-md text-base font-medium transition-all duration-300 touch-target ${
-                        isActive(item.path)
-                          ? "text-neon-blue bg-white/10"
-                          : "text-slate-700 dark:text-slate-300 hover:text-neon-blue hover:bg-white/5"
-                      }`}
-                    >
-                      <span className="mr-3 text-lg flex-shrink-0">
-                        {item.icon}
-                      </span>
-                      <div className="min-w-0">
-                        <div className="font-medium truncate">{item.label}</div>
-                        <div className="text-xs text-slate-500 dark:text-slate-400 truncate">
-                          {item.description}
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
-                ))}
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              />
 
-                {/* Mobile Timer Widget */}
-                <div className="px-3 py-2 border-t border-white/10 mt-2">
-                  <TimerWidget />
+              {/* Offcanvas Panel */}
+              <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="fixed top-0 right-0 h-screen overflow-auto w-80 max-w-[85vw] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl border-l border-white/20 shadow-2xl z-50"
+              >
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/20 via-transparent to-neon-purple/20"></div>
+                  <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,245,255,0.1),transparent_50%)]"></div>
+                  <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-neon-blue/5 rounded-full blur-xl"></div>
+                  <div className="absolute bottom-1/4 left-1/4 w-24 h-24 bg-neon-purple/5 rounded-full blur-xl"></div>
                 </div>
-              </div>
-            </motion.div>
+                {/* Header */}
+                <div className="relative flex items-center justify-between p-4 border-b border-white/20">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-gradient-to-r from-neon-blue to-neon-purple rounded-lg flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">N</span>
+                    </div>
+                    <span className="text-xl font-bold text-gradient font-space">
+                      NASA Explorer
+                    </span>
+                  </div>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="p-2 rounded-lg hover:bg-white/10 transition-colors duration-300"
+                  >
+                    <Icon name="close" size={20} className="text-white" />
+                  </motion.button>
+                </div>
+
+                {/* Navigation Items */}
+                <div className="relative flex-1 overflow-y-auto py-4">
+                  <div className="px-4 space-y-2">
+                    {navItems.map((item, index) => (
+                      <motion.div
+                        key={item.path}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                      >
+                        <Link
+                          to={item.path}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className={`flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 group ${
+                            isActive(item.path)
+                              ? "text-neon-blue bg-neon-blue/10 border border-neon-blue/20"
+                              : "text-slate-300 hover:text-white hover:bg-white/5"
+                          }`}
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-slate-700 to-slate-600 flex items-center justify-center mr-3 group-hover:from-neon-blue/20 group-hover:to-neon-purple/20 transition-all duration-300">
+                            <Icon
+                              name={item.icon}
+                              size={18}
+                              className="text-white"
+                            />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium truncate">
+                              {item.label}
+                            </div>
+                            <div className="text-xs text-slate-400 truncate mt-1">
+                              {item.description}
+                            </div>
+                          </div>
+                          {isActive(item.path) && (
+                            <div className="w-2 h-2 bg-neon-blue rounded-full"></div>
+                          )}
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Additional Controls */}
+                  <div className="relative px-4 mt-6 pt-6 border-t border-white/10">
+                    <div className="space-y-3">
+                      {/* Language Switcher */}
+                      <div className="flex items-center justify-between px-4 py-3 rounded-lg bg-white/5">
+                        <span className="text-slate-300 font-medium">
+                          Language
+                        </span>
+                        <LanguageSwitcher />
+                      </div>
+
+                      {/* Timer Widget */}
+                      <div className="px-4 py-3 rounded-lg bg-white/5">
+                        <TimerWidget />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer */}
+                <div className="relative p-4 border-t border-white/20">
+                  <div className="text-center">
+                    <p className="text-xs text-slate-400">
+                      Explore the universe with NASA Explorer
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </div>

@@ -30,7 +30,7 @@ const initializeAI = () => {
         temperature: 0.7,
         topK: 40,
         topP: 0.95,
-        maxOutputTokens: 1024,
+        maxOutputTokens: 4096,
       },
       safetySettings: [
         {
@@ -109,6 +109,10 @@ export const sendChatMessage = async (message, chatHistory = []) => {
           throw new Error(
             "Response blocked due to recitation concerns. Please try a different question."
           );
+        } else if (finishReason === "MAX_TOKENS") {
+          throw new Error(
+            "Response was too long and got truncated. Please ask a more specific question."
+          );
         }
       }
 
@@ -134,6 +138,10 @@ export const sendChatMessage = async (message, chatHistory = []) => {
     } else if (error.message?.includes("SAFETY")) {
       throw new Error(
         "Content blocked by safety filters. Please rephrase your message."
+      );
+    } else if (error.message?.includes("MAX_TOKENS")) {
+      throw new Error(
+        "Response was too long and got truncated. Please ask a more specific question."
       );
     }
 
