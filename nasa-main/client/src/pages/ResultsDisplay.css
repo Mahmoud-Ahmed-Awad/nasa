@@ -1,0 +1,381 @@
+.results-display {
+  min-height: calc(100vh - 80px); /* Account for navbar height */
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #2d1b69 100%);
+  color: #e0e0e0;
+  padding: 2rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.results-display .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.results-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  color: #64ffda;
+}
+
+.spinner-large {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(100, 255, 218, 0.3);
+  border-top: 4px solid #64ffda;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.results-error {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.results-error h2 {
+  color: #ff6b6b;
+  margin-bottom: 1rem;
+}
+
+.back-btn {
+  background: #64ffda;
+  color: #0f0f23;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+}
+
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.back-button {
+  background: rgba(100, 255, 218, 0.1);
+  color: #64ffda;
+  border: 1px solid #64ffda;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.back-button:hover {
+  background: #64ffda;
+  color: #0f0f23;
+}
+
+.results-header h1 {
+  font-size: 2.5rem;
+  color: #64ffda;
+  margin: 0;
+}
+
+.star-id {
+  color: #b0b0b0;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.prediction-summary {
+  margin-bottom: 3rem;
+}
+
+.prediction-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid;
+  border-radius: 15px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  transition: all 0.3s ease;
+}
+
+.prediction-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.prediction-icon {
+  font-size: 4rem;
+  flex-shrink: 0;
+}
+
+.prediction-details {
+  flex: 1;
+}
+
+.prediction-details h2 {
+  font-size: 2rem;
+  margin: 0 0 1rem 0;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.confidence-bar {
+  width: 100%;
+}
+
+.confidence-label {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #e0e0e0;
+}
+
+.confidence-progress {
+  width: 100%;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: #64ffda;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.charts-section {
+  margin-bottom: 3rem;
+}
+
+.chart-container {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.chart-container h3 {
+  color: #64ffda;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.chart-wrapper {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.data-details {
+  margin-bottom: 3rem;
+}
+
+.data-details h3 {
+  color: #64ffda;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.parameters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.parameter-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  border-radius: 10px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.parameter-card:hover {
+  border-color: rgba(100, 255, 218, 0.4);
+  transform: translateY(-2px);
+}
+
+.parameter-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.parameter-info h4 {
+  color: #64ffda;
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.parameter-info p {
+  color: #e0e0e0;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.interpretation {
+  margin-bottom: 3rem;
+}
+
+.interpretation h3 {
+  color: #64ffda;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.interpretation-content {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 2rem;
+  border-left: 4px solid #64ffda;
+}
+
+.interpretation-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.interpretation-text.planet {
+  border-left-color: #4caf50;
+}
+
+.interpretation-text.candidate {
+  border-left-color: #ff9800;
+}
+
+.interpretation-text.false-positive {
+  border-left-color: #f44336;
+}
+
+/* Gemini AI Reasoning Section */
+.reasoning-section {
+  margin: 2rem 0;
+}
+
+.reasoning-section h3 {
+  color: #64ffda;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reasoning-card {
+  background: rgba(100, 255, 218, 0.05);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.reasoning-card p {
+  color: #e0e0e0;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.interpretation-text strong {
+  color: #64ffda;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.analyze-another-btn,
+.learn-more-btn {
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.analyze-another-btn {
+  background: linear-gradient(45deg, #64ffda, #4fd3b8);
+  color: #0f0f23;
+}
+
+.learn-more-btn {
+  background: transparent;
+  color: #64ffda;
+  border: 2px solid #64ffda;
+}
+
+.analyze-another-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+}
+
+.learn-more-btn:hover {
+  background: #64ffda;
+  color: #0f0f23;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .results-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .results-header h1 {
+    font-size: 2rem;
+  }
+
+  .prediction-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .parameters-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .analyze-another-btn,
+  .learn-more-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}

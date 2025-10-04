@@ -1,0 +1,489 @@
+.learn-page {
+  min-height: calc(100vh - 80px); /* Account for navbar height */
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #2d1b69 100%);
+  color: #e0e0e0;
+  padding: 2rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.learn-page .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.learn-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.learn-header h1 {
+  font-size: 3rem;
+  color: #64ffda;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #64ffda, #4fd3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.learn-header p {
+  font-size: 1.2rem;
+  color: #b0b0b0;
+}
+
+.learn-section {
+  margin-bottom: 4rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  padding: 3rem;
+  border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.section-header {
+  margin-bottom: 2rem;
+}
+
+.section-header h2 {
+  font-size: 2rem;
+  color: #64ffda;
+  margin-bottom: 0.5rem;
+}
+
+.section-content {
+  display: grid;
+  gap: 2rem;
+}
+
+/* What is an Exoplanet Section */
+.content-text {
+  flex: 2;
+}
+
+.content-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  color: #e0e0e0;
+}
+
+.highlight-box {
+  background: rgba(100, 255, 218, 0.1);
+  border-left: 4px solid #64ffda;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.highlight-box h4 {
+  color: #64ffda;
+  margin-bottom: 1rem;
+}
+
+.highlight-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.highlight-box li {
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.highlight-box li::before {
+  content: "→";
+  color: #64ffda;
+  position: absolute;
+  left: 0;
+}
+
+.content-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exoplanet-types {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.planet-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.planet {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: relative;
+  animation: float 3s ease-in-out infinite;
+}
+
+.planet.rocky {
+  background: linear-gradient(45deg, #8d6e63, #5d4037);
+}
+
+.planet.gas-giant {
+  background: linear-gradient(45deg, #ff9800, #f57c00);
+}
+
+.planet.ice-giant {
+  background: linear-gradient(45deg, #2196f3, #1976d2);
+}
+
+.planet.super-earth {
+  background: linear-gradient(45deg, #4caf50, #388e3c);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* NASA Missions Section */
+.missions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.mission-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.mission-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(100, 255, 218, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.mission-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.mission-card h3 {
+  color: #64ffda;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.mission-years {
+  color: #ff9800;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.mission-card p {
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #b0b0b0;
+}
+
+.mission-stats {
+  background: rgba(100, 255, 218, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  color: #64ffda;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* Transit Method Section */
+.transit-explanation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.transit-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.transit-math {
+  background: rgba(100, 255, 218, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 4px solid #64ffda;
+}
+
+.transit-math h4 {
+  color: #64ffda;
+  margin-bottom: 1rem;
+}
+
+.transit-math p {
+  font-family: 'Courier New', monospace;
+  color: #64ffda;
+  margin-bottom: 0.5rem;
+}
+
+.transit-animation-large {
+  text-align: center;
+}
+
+.star-system {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 2rem;
+}
+
+.star-large-anim {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, #ffeb3b, #ff9800);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 40px rgba(255, 235, 59, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.planet-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180px;
+  height: 180px;
+  border: 1px dashed rgba(100, 255, 218, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.planet-transiting {
+  width: 20px;
+  height: 20px;
+  background: #2196f3;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  animation: orbit-transit 4s linear infinite;
+}
+
+@keyframes orbit-transit {
+  from { 
+    transform: rotate(0deg) translateX(90px) rotate(0deg); 
+  }
+  to { 
+    transform: rotate(360deg) translateX(90px) rotate(-360deg); 
+  }
+}
+
+.light-curve-demo h4 {
+  color: #64ffda;
+  margin-bottom: 1rem;
+}
+
+/* Challenges Section */
+.challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.challenge-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.challenge-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 107, 107, 0.4);
+}
+
+.challenge-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.challenge-card h3 {
+  color: #ff6b6b;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.challenge-card p {
+  line-height: 1.6;
+  color: #b0b0b0;
+  font-size: 0.95rem;
+}
+
+/* AI Section */
+.ai-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.ai-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.ai-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+  background: rgba(100, 255, 218, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #64ffda;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #b0b0b0;
+}
+
+.neural-network {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  height: 150px;
+}
+
+.network-layer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.neuron {
+  width: 20px;
+  height: 20px;
+  background: #64ffda;
+  border-radius: 50%;
+  animation: pulse-neuron 2s ease-in-out infinite;
+}
+
+.neuron.output {
+  background: #ff6b6b;
+  width: 25px;
+  height: 25px;
+}
+
+@keyframes pulse-neuron {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(45deg, rgba(100, 255, 218, 0.1), rgba(79, 211, 184, 0.1));
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  border: 1px solid rgba(100, 255, 218, 0.3);
+}
+
+.cta-content h2 {
+  font-size: 2.5rem;
+  color: #64ffda;
+  margin-bottom: 1rem;
+}
+
+.cta-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #b0b0b0;
+}
+
+.cta-button {
+  display: inline-block;
+  background: linear-gradient(45deg, #64ffda, #4fd3b8);
+  color: #0f0f23;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(100, 255, 218, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .learn-header h1 {
+    font-size: 2rem;
+  }
+  
+  .section-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .transit-explanation {
+    grid-template-columns: 1fr;
+  }
+  
+  .ai-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .missions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .challenges-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ai-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .exoplanet-types {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

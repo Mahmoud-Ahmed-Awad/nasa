@@ -1,0 +1,12 @@
+# Image Assets Directory
+
+This directory contains placeholder image references. In a real project, you would include:
+
+- starfield.jpg - Background starfield image
+- team1.jpg, team2.jpg, team3.jpg - Team member photos
+- satellite1.jpg, satellite2.jpg - Satellite images
+- mission images for various NASA missions
+- exoplanet visualization images
+
+For this demo, the application uses Unsplash images via URLs in the components.
+
