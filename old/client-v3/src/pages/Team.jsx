@@ -25,18 +25,18 @@ const Team = () => {
       bio: "Moahmed Saeed is a Researcher with a passion for building scalable and efficient systems. He is responsible for the research of the application.",
       image: "/assets/team/mohamed-saeed.jpg",
     },
-    {
-      name: "Malak Nour",
-      role: "Designer",
-      bio: "Malak Nour is a Designer with a passion for building scalable and efficient systems. She is responsible for the design of the presentation and other designs.",
-      image: "/assets/team/malak-nour.jpg",
-    },
-    {
-      name: "Demiana Shenouda",
-      role: "Presenter",
-      bio: "Demiana Shenouda is a Presenter with a passion for building scalable and efficient systems. She is responsible for the presentation of the application.",
-      image: "/assets/team/demiana-shenouda.jpg",
-    },
+    // {
+    //   name: "Malak Nour",
+    //   role: "Designer",
+    //   bio: "Malak Nour is a Designer with a passion for building scalable and efficient systems. She is responsible for the design of the presentation and other designs.",
+    //   image: "/assets/team/malak-nour.jpg",
+    // },
+    // {
+    //   name: "Demiana Shenouda",
+    //   role: "Presenter",
+    //   bio: "Demiana Shenouda is a Presenter with a passion for building scalable and efficient systems. She is responsible for the presentation of the application.",
+    //   image: "/assets/team/demiana-shenouda.jpg",
+    // },
   ];
 
   return (
